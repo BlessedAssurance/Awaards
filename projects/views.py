@@ -9,14 +9,33 @@ from django.db.models import Avg
 # Create your views here.
 class PostListView(ListView):
     model = Post
-    template_name = ' '
+    template_name = 'projects/index.html '
 
 class PostDetailView(DetailView): 
     model = Post
-    template_name = ' '
+    template_name = 'post_detail.html '
 
 class SignUpView(generic.CreateView):
     form_class = UserRegisterForm
     success_url = reverse_lazy('login')
-    template_name = ' '
+    template_name = 'registration/signup.html '
 
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user=current_user).first()
+    posts = request.user.post_set.all()
+
+    return render(request, 'projects/profile.html', locals())
+
+def updateprofile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            add = form.save(commit=False)
+            add.user = current_user
+            add.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'projects/profile_update.html',{"form":form })
