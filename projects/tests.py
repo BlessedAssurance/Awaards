@@ -46,3 +46,4 @@ class PostTestClass(TestCase):
         self.new_post.save_post()
         self.new_post.delete_post()
         post = Post.objects.all()
+        self.assertTrue(len(post)==0)
