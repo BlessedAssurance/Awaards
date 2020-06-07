@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from .forms import PostForm,ProfileForm,UserRegisterForm
 from django.views import generic
 from django.db.models import Avg
+
 # Create your views here.
 class PostListView(ListView):
     model = Post
@@ -39,3 +40,36 @@ def updateprofile(request):
     else:
         form = ProfileForm()
     return render(request, 'projects/profile_update.html',{"form":form })
+
+def post_new(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+        return redirect('home')
+    else:
+        form = PostForm()
+    return render(request, 'projects/post_new.html', {"form": form})
+
+def search_results(request):
+
+    if 'post' in request.GET and request.GET["post"]:
+        search_term = request.GET.get("post")
+        searched_posts = Post.search(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'projects/search.html',{"message":message,"posts": searched_posts})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'projects/search.html',{"message":message})
+
+def vote(request,post_id):
+    try:
+        post = Post.objects.get(id = post_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"projects/vote.html", {"post":post})
