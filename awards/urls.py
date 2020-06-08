@@ -21,4 +21,7 @@ from django.contrib.auth import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('projects.urls')),
+    path('users/', include('users.urls')),
+    path('users/', include('django.contrib.auth.urls')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings'))
 ]
