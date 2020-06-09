@@ -10,7 +10,7 @@ from django.db.models import Avg
 # Create your views here.
 class PostListView(ListView):
     model = Post
-    template_name = 'projects/index.html '
+    template_name = 'projects/index.html'
 
 class PostDetailView(DetailView): 
     model = Post
