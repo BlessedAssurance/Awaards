@@ -12,6 +12,7 @@ pillow = "*"
 django-mathfilters = "*"
 django-crispy-forms = "*"
 django-star-ratings = "*"
+django-bootstrap3 = "*"
 
 [requires]
 python_version = "3.6"
