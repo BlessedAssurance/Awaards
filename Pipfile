@@ -11,6 +11,7 @@ django = "==2.2.10"
 pillow = "*"
 django-mathfilters = "*"
 django-crispy-forms = "*"
+django-star-ratings = "*"
 
 [requires]
 python_version = "3.6"
