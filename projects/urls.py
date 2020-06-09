@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,re_path
 from . import views
 from .views import PostListView,PostDetailView,SignUpView
 from django.conf import settings
@@ -14,7 +14,7 @@ path('profile/', views.profile, name='profile'),
 path('update/profile', views.updateprofile, name='update'),
 path('post/new/', views.post_new, name='post_new'),
 path('search/', views.search_results, name='search_results'),
-
+re_path(r'^vote/(?P<post_id>\d+)?', views.vote, name='vote'), 
 
 ]
 
