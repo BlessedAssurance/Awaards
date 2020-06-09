@@ -13,6 +13,7 @@ django-mathfilters = "*"
 django-crispy-forms = "*"
 django-star-ratings = "*"
 django-bootstrap3 = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.6"
