@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.db.models import Q
 
 # Create your models here.
+
 class Post(models.Model):
     user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     title= models.CharField(max_length=50)
@@ -33,7 +34,7 @@ class Post(models.Model):
         return reverse('post_detail', args=[str(self.id)])
 
 class Profile(models.Model):
-    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
+    User = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     image = models.ImageField(upload_to='profile_pics/')
     bio = models.TextField(default="Hello there!")
     email = models.CharField(blank = True, max_length = 100)
