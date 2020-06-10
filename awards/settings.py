@@ -33,8 +33,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 INSTALLED_APPS = [
     'projects',
     'crispy_forms',
-    'star_ratings', 
     'bootstrap3',
+    'star_ratings', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
